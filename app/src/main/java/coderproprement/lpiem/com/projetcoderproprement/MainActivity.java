@@ -13,15 +13,14 @@ import coderproprement.lpiem.com.projetcoderproprement.Model.Comic;
 import coderproprement.lpiem.com.projetcoderproprement.Model.JSONImport;
 
 public class MainActivity extends AppCompatActivity {
-    private Context context;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
         HashMap<Integer, Comic> comicList = new HashMap<>();
-        JSONImport jsonImport = new JSONImport(comicList);
+        JSONImport jsonImport = new JSONImport(comicList,context);
         comicList = jsonImport.importData(context,JSONImport.OKJSONADDRESSFILE);
         displayComicHashMap(comicList);
     }
