@@ -1,17 +1,20 @@
 package coderproprement.lpiem.com.projetcoderproprement.model;
 
 import android.content.Context;
+import android.support.test.InstrumentationRegistry;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.HashMap;
 
-import coderproprement.lpiem.com.projetcoderproprement.MainActivity;
 import coderproprement.lpiem.com.projetcoderproprement.Model.Comic;
+import coderproprement.lpiem.com.projetcoderproprement.Model.ComicCreator;
 import coderproprement.lpiem.com.projetcoderproprement.Model.JSONImport;
 
 import static junit.framework.Assert.assertTrue;
@@ -19,14 +22,15 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
 public class JSONImportTest {
-    private MainActivity mainActivity;
     private JSONImport jsonImport;
+    private Context context;
 
     @Before
     public void setUp(){
-        mainActivity = new MainActivity();
         HashMap<Integer, Comic> comicList = new HashMap<>();
-        jsonImport = new JSONImport(comicList,jsonImport.getContext());
+        jsonImport = new JSONImport(comicList);
+        this.context = InstrumentationRegistry.getTargetContext();
+        this.comicListTestInit();
     }
 
     @Test
@@ -34,8 +38,11 @@ public class JSONImportTest {
         HashMap<Integer, Comic> comicList2 = new HashMap<>();
         HashMap<Integer, Comic> comicList3 = new HashMap<>();
 
-        JSONImport jsonImport1 = new JSONImport(comicList2,jsonImport.getContext());
-        JSONImport jsonImport2 = new JSONImport(comicList3,jsonImport.getContext());
+        JSONImport jsonImport1 = new JSONImport(comicList2);
+        JSONImport jsonImport2 = new JSONImport(comicList3);
+
+        comicList2.put(3,new Comic());
+        comicList3.put(3,new Comic());
 
         assertEquals(jsonImport,jsonImport1);
         assertEquals(jsonImport,jsonImport1);
@@ -60,13 +67,72 @@ public class JSONImportTest {
     }
 
     @Test
-    private void checkIfFileIsCorrect() throws JSONException {
-        Context context = jsonImport.getContext();
-        JSONObject okJsonObject = new JSONObject(jsonImport.loadJSONFromAsset(context, "json/sample-ok.json"));
-        JSONObject koJsonObject = new JSONObject(jsonImport.loadJSONFromAsset(context, "json/sample-ok.json"));
+    public void checkIfCorrectFileCanBeReaden() throws JSONException {
+        JSONObject okJsonObject = new JSONObject(jsonImport.loadJSONFromAsset(this.context, "json/sample-ok.json"));
 
         assertTrue(jsonImport.checkIfFileIsCorrect(okJsonObject) == true);
-        assertFalse(jsonImport.checkIfFileIsCorrect(koJsonObject) == true);
-        assertTrue(jsonImport.checkIfFileIsCorrect(koJsonObject) == false);
+    }
+
+    @Test(expected= JSONException.class)
+    public void checkIfIncorrectFileCannotBeReaden() throws JSONException {
+        JSONObject koJsonObject = new JSONObject(jsonImport.loadJSONFromAsset(this.context, "json/sample-ko.json"));
+
+        assertTrue(jsonImport.checkIfFileIsCorrect(koJsonObject) == true);
+    }
+
+    @Test
+    public void AddComicToList(){
+        assertTrue(this.jsonImport.getCurrentError().equals(""));
+    }
+
+    private void comicListTestInit() {
+        Comic c = new Comic();
+        int id = 3;
+        this.jsonImport.addComic(c,3);
+    }
+
+    @Test
+    public void isElementPresentInArray(){
+        Comic c = new Comic();
+        Comic c2 = new Comic("Test comic",
+                "A test comic",
+                "ds45743dqs",
+                null,
+                4.03f,
+                3,
+                "no image url",
+                null);
+        assertTrue(this.jsonImport.isPresent(c)==true);
+        assertFalse(this.jsonImport.isPresent(c2));
+    }
+
+    @Test
+    public void getElementById(){
+        Comic c = new Comic();
+        assertTrue(this.jsonImport.getElementById(c)==3);
+    }
+
+    @Test
+    public void removeElement(){
+        Comic c = new Comic();
+        Comic c2 = new Comic("Test comic",
+                "A test comic",
+                "ds45743dqs",
+                null,
+                4.03f,
+                3,
+                "no image url",
+                null);
+
+        this.jsonImport.removeComic(c);
+        assertTrue(this.jsonImport.getCurrentError()=="");
+
+        this.jsonImport.removeComic(c2);
+        assertTrue(this.jsonImport.getCurrentError()!="");
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
     }
 }

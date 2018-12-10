@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         HashMap<Integer, Comic> comicList = new HashMap<>();
-        JSONImport jsonImport = new JSONImport(comicList,context);
-        comicList = jsonImport.importData(context,JSONImport.OKJSONADDRESSFILE);
-        displayComicHashMap(comicList);
+        displayComicHashMap(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
     }
 
     private void displayComicHashMap(HashMap<Integer, Comic> comicList){
@@ -40,19 +38,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void setContext(Context context) {
         this.context = context;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MainActivity that = (MainActivity) o;
-        return Objects.equals(context, that.context);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(context);
     }
 }

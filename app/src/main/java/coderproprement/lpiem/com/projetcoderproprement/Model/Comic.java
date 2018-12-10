@@ -135,7 +135,7 @@ public class Comic implements ComicInterface{
         if(isCreatorPresent(c)==false){
             this.comicCreatorsList.add(c);
         }else{
-            Log.d("Gestion du comic","Le créateur est déjà présent dans la liste!");
+            System.out.println("Gestion du comic : "+"Le créateur est déjà présent dans la liste!");
         }
     }
 
@@ -157,7 +157,7 @@ public class Comic implements ComicInterface{
         if(isCreatorPresent(c)==true){
             this.comicCreatorsList.remove(c);
         }else{
-            Log.d("Gestion du comic","Le créateur n'est pas présent dans la liste!");
+            System.out.println("Gestion du comic : "+"Le créateur n'est pas présent dans la liste!");
         }
     }
 }
