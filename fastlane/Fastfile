@@ -26,5 +26,10 @@ platform :android do
     gradle(
       task: "assemble"
     )
+    end
   end
-end
+
+  desc "Rename APK in the debug folder"
+  lane :renameAPK do
+    sh("../shell/rename-apk.sh")
+  end
