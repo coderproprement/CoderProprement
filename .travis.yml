@@ -24,7 +24,7 @@ before_script:
 script: ./gradlew connectedAndroidTest
 - fastlane test
 - fastlane build
-- fastlane rename-apk
+- fastlane renameapk
 before_install:
   - chmod +x gradlew
 after_script:
