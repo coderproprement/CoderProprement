@@ -25,5 +25,6 @@ platform :test do
   lane :build do
     sh "gradle build"
     sh("../shell/renameApk.sh")
+    sh("../shell/renameDebugApk.sh")
     end
   end
