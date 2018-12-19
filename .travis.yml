@@ -22,7 +22,7 @@ before_script:
   - adb shell input keyevent 82 &
 install:
  - gem update --system
- - gem install fastlane --no-rdoc --no-ri --no-document --quiet
+ - gem install fastlane
  - pip install --user awscli
 script:
  - ./gradlew connectedAndroidTest
