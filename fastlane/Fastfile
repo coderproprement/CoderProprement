@@ -21,16 +21,11 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Build the solution"
+  desc "Build the solution and automatically rename Apk"
   lane :build do
     gradle(
       task: "assemble"
     )
 	sh("../shell/renameApk.sh")
     end
-  end
-
-  desc "Rename APK in the debug folder"
-  lane :renameAPK do
-    
   end
