@@ -15,17 +15,15 @@
 
 default_platform(:android)
 
-platform :android do
+platform :test do
   desc "Runs all the tests"
   lane :test do
-    gradle(task: "test")
+    sh "gradle test"
   end
 
   desc "Build the solution and automatically rename Apk"
   lane :build do
-    gradle(
-      task: "assemble"
-    )
-	sh("../shell/renameApk.sh")
+    sh "gradle build"
+    sh("../shell/renameApk.sh")
     end
   end

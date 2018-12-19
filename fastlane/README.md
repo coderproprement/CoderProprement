@@ -25,7 +25,7 @@ Runs all the tests
 ```
 fastlane android build
 ```
-Build the solution
+Build the solution and automatically rename Apk
 
 ----
 
