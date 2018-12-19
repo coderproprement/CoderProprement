@@ -1,4 +1,5 @@
 ﻿#!/bin/bash
+#Renaming APK file
 branch=$(git symbolic-ref --short HEAD)
 newName=$branch.".apk"
 newName=`ècho $newName | sed 's/\//_/g'`
