@@ -20,7 +20,9 @@ platform :test do
   lane :test do
     gradle(task: "test")
   end
+end
 
+platform :deploy do
   desc "Build the solution and automatically rename Apk"
   lane :build do
     gradle(task: 'assemble',

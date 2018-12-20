@@ -27,7 +27,7 @@ install:
 script:
  - ./gradlew connectedAndroidTest
  - fastlane test
- - fastlane build
+ - fastlane deploy
 before_install:
   - chmod +x gradlew
 after_script:
