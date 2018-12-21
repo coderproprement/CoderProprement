@@ -27,7 +27,5 @@ platform :deploy do
   lane :build do
     gradle(task: 'assemble',
     build_type: 'Release')
-    sh("../shell/renameApk.sh")
-    sh("../shell/renameDebugApk.sh")
     end
   end
