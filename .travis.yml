@@ -25,7 +25,7 @@ install:
  - gem update --system
  - gem install fastlane
  - pip install --user awscli
- - brew install gradle
+ - sdk install gradle
 script:
  - ./gradlew connectedAndroidTest
  - fastlane test
