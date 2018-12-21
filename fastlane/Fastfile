@@ -16,16 +16,16 @@ setup_travis
 default_platform(:android)
 
 platform :test do
-  desc "Runs all the tests"
+  desc "Realizing unit tests"
   lane :test do
-    gradle(task: "test")
+    desc "Runs all the tests"
+    sh(".gradlew test")
   end
 end
 
 platform :deploy do
   desc "Build the solution and automatically rename Apk"
   lane :build do
-    gradle(task: 'assemble',
-    build_type: 'Release')
+    sh("./gradlew build --scan -s")
     end
   end
