@@ -22,7 +22,7 @@ platform :android do
   PROJECT_NAME = "comicsManager"
 
   desc "Realizing unit tests"
-  lane :test do
+  lane :test do |options|
     desc "Runs all the tests"
     gradle(
       task:"clean",
@@ -32,7 +32,9 @@ platform :android do
     )
   end
   desc "Build the solution and automatically rename Apk"
-  lane :build do
-    sh("./gradlew build --scan -s")
+  lane :build do |options|
+    gradle(
+	task:"build"
+    )
     end
   end
