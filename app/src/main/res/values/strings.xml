@@ -2,6 +2,6 @@
     <string name="app_name">projetCoderProprement</string>
     <string name="comicIconDescription">Comic Icon Description</string>
     <string name="comicTitle">Titre</string>
-    <string name="comicReleaseDate">Date de sortie</string>
+    <string name="comicReleaseDate">Date de parution</string>
     <string name="comicPageNumber">Nombre de pages</string>
 </resources>

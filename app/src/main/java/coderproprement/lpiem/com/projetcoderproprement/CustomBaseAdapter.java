@@ -1,5 +1,6 @@
 package coderproprement.lpiem.com.projetcoderproprement;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import coderproprement.lpiem.com.projetcoderproprement.Model.Comic;
@@ -30,6 +33,7 @@ public class CustomBaseAdapter extends BaseAdapter {
         TextView comicPageNumber;
     }
 
+    @SuppressLint("DefaultLocale")
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
 
@@ -48,9 +52,12 @@ public class CustomBaseAdapter extends BaseAdapter {
 
         Comic comicItem = (Comic) getItem(position);
 
-        holder.comicTitle.setText(comicItem.getTitle());
-        holder.comicDate.setText(comicItem.getParutionDate().toString());
-        holder.comicPageNumber.setText(comicItem.getPageCount());
+
+        SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMMM  yyyy");
+
+        holder.comicTitle.setText(String.format("%s : %s", context.getString(R.string.comicTitle), comicItem.getTitle()));
+        holder.comicDate.setText(String.format("%s : %s",context.getString(R.string.comicReleaseDate),format.format(comicItem.getParutionDate())));
+        holder.comicPageNumber.setText(String.format("%s : %d", context.getString(R.string.comicPageNumber), comicItem.getPageCount()));
         holder.comicIcon.setImageURI(Uri.parse(comicItem.getImageUrl()));
 
         return convertView;
