@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
         //displayComicHashMap(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
         comicListView = (ListView) findViewById(R.id.comicListView);
 
-       comicList.putAll(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
-       displayComicHashMap(comicList);
+        comicList.putAll(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
+
+        //displayComicHashMap(comicList);
 
        List<Comic> list = new ArrayList<Comic>(comicList.values());
-       Log.d("ComicList",list.toString());
+       //Log.d("ComicList",list.toString());
         
        CustomBaseAdapter adapter = new CustomBaseAdapter(this, list);
        comicListView.setAdapter(adapter);

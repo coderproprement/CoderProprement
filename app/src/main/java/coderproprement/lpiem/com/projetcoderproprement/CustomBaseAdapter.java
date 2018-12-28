@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -58,7 +60,7 @@ public class CustomBaseAdapter extends BaseAdapter {
         holder.comicTitle.setText(String.format("%s : %s", context.getString(R.string.comicTitle), comicItem.getTitle()));
         holder.comicDate.setText(String.format("%s : %s",context.getString(R.string.comicReleaseDate),format.format(comicItem.getParutionDate())));
         holder.comicPageNumber.setText(String.format("%s : %d", context.getString(R.string.comicPageNumber), comicItem.getPageCount()));
-        holder.comicIcon.setImageURI(Uri.parse(comicItem.getImageUrl()));
+        Glide.with(convertView).load(comicItem.getImageUrl()).into(holder.comicIcon);
 
         return convertView;
     }
