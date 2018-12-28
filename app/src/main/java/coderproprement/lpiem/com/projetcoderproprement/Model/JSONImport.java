@@ -223,11 +223,12 @@ public class JSONImport implements JSONImportInterface{
 
     @Override
     public Date createDate(String formattedDate){
-        SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMMM  yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-0400'");
         Date date = null;
         try {
             date = format.parse(formattedDate);
             System.out.println(date);
+            Log.d("MyDateFormatted",date.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
