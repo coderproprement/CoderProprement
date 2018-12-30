@@ -29,7 +29,7 @@ install:
  - gem install fastlane
  - pip install --user awscli
 script:
- - "./build-apk.sh"
-#- ./gradlew connectedAndroidTest
- - fastlane test
- - fastlane deploy
+#- "./build-apk.sh"
+ - ./gradlew build --scan -s
+#- fastlane test
+#- fastlane deploy
