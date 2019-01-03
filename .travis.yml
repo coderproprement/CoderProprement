@@ -11,7 +11,6 @@ android:
     - android-28
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
-    - extra-google-m2repository
   licenses:
     - android-sdk-license-.+
     - ".+"
@@ -21,15 +20,9 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+
+script: ./gradlew connectedAndroidTest
 before_install:
  - chmod +x "./gradlew"
-install:
- - bundle install
- - gem update --system
- - gem install fastlane
- - pip install --user awscli
-script:
-#- "./build-apk.sh"
- - ./gradlew build --scan -s
-#- fastlane test
-#- fastlane deploy
+after_script:
+  - ./build-apk.sh
