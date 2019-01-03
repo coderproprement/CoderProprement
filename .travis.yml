@@ -10,9 +10,8 @@ android:
     - platform-tools
     - tools
     - build-tools-27.0.3
-    - android-22
     - android-28
-    - sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-28
     - extra-android-m2repository
   licenses:
     - android-sdk-license-.+
