@@ -1,8 +1,6 @@
 language: android
-osx_image: xcode9.3
+jdk: oraclejdk8
 sudo: false
-
-os: osx
 
 android:
   components:
@@ -14,9 +12,7 @@ android:
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
   licenses:
-    - export ANDROID_HOME=~/Android/SDK
-    - export PATH=$ANDROID_HOME/tools:$PATH
-    - ./sdkmanager --licences
+    - android-sdk-license-.+
     - ".+"
 before_script:
   # Create and start emulator
@@ -30,4 +26,3 @@ before_install:
  - chmod +x "./gradlew"
 after_script:
   - ./build-apk.sh
-
