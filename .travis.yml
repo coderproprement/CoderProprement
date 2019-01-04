@@ -1,6 +1,8 @@
 language: android
-jdk: oraclejdk8
+osx_image: xcode9.3
 sudo: false
+
+os: osx
 
 android:
   components:
