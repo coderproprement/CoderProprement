@@ -2,14 +2,12 @@ language: android
 jdk: oraclejdk8
 sudo: false
 
-os:
-  - osx
-
 android:
   components:
     - platform-tools
     - tools
     - build-tools-27.0.3
+    - android-22
     - android-28
     - sys-img-armeabi-v7a-android-28
     - extra-android-m2repository
@@ -22,12 +20,9 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+
+script: ./gradlew connectedAndroidTest
 before_install:
  - chmod +x "./gradlew"
-install:
- - bundle install
-script:
- - ./gradlew connectedAndroidTest
- - fastlane android
 after_script:
   - ./build-apk.sh
