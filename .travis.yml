@@ -14,7 +14,7 @@ android:
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
   licenses:
-    - android-sdk-license-.+
+    - ./sdkmanager --licences
     - ".+"
 before_script:
   # Create and start emulator
