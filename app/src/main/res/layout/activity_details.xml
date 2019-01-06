@@ -28,7 +28,8 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/details"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:scrollbars = "vertical"/>
 
     <TextView
         android:id="@+id/details"

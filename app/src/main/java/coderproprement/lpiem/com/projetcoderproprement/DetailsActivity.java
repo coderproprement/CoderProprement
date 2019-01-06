@@ -3,11 +3,13 @@ package coderproprement.lpiem.com.projetcoderproprement;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import coderproprement.lpiem.com.projetcoderproprement.Model.Comic;
+import coderproprement.lpiem.com.projetcoderproprement.Model.ComicCreator;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -26,16 +28,22 @@ public class DetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
         details = findViewById(R.id.details);
         credits = findViewById(R.id.credit);
+        description.setMovementMethod(new ScrollingMovementMethod());
 
         title.setText(getIntent().getStringExtra("title"));
         description.setText(getIntent().getStringExtra("description"));
         details.setText(getIntent().getStringExtra("details"));
-        /*ArrayList<String> creatorsList = (getIntent().getStringArrayListExtra("creators"));
-        String creators = "";
+        ArrayList<String> creatorsList = getIntent().getStringArrayListExtra("creators");
+        String creators = "Auteurs: ";
         for(int i = 0; i<creatorsList.size() ; i++){
-            creators = creators+creatorsList.get(i);
+            if(i==0){
+                creators =  creators +creatorsList.get(i);
+            }
+            else {
+                creators = creators + ", " + creatorsList.get(i);
+            }
         }
-        credits.setText(creators);*/
+        credits.setText(creators);
     }
 
 

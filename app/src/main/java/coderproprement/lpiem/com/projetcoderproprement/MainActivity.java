@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,8 +71,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent myIntent = new Intent(getBaseContext(),   DetailsActivity.class);
         myIntent.putExtra("title", list.get(position).getTitle());
         myIntent.putExtra("description", list.get(position).getDescription());
-        String details = list.get(position).getParutionDate().toString();
+        SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMMM  yyyy");
+        String details = format.format(list.get(position).getParutionDate());
         myIntent.putExtra("details", details);
+        ArrayList creators = new ArrayList<String>();
+        for(int i = 0; i<list.get(position).getComicCreatorsList().size(); i++){
+            creators.add(list.get(position).getComicCreatorsList().get(i).getName());
+        }
+        myIntent.putExtra("creators", creators);
         startActivity(myIntent);
     }
 }
