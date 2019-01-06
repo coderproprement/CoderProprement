@@ -1,6 +1,7 @@
 package coderproprement.lpiem.com.projetcoderproprement;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,5 +76,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(context, "You have clicked on Comic " + list.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(getBaseContext(),   DetailsActivity.class);
+        myIntent.putExtra("title", list.get(position).getTitle());
+        myIntent.putExtra("description", list.get(position).getDescription());
+        SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMMM  yyyy");
+        String details ="Date de publication: "+ format.format(list.get(position).getParutionDate()) + "\n";
+        details = details + "prix: "+ String.valueOf(list.get(position).getPrice());
+        details = details + "  pages: " + String.valueOf(list.get(position).getPageCount());
+        details = details + "  diamond code: " + list.get(position).getDiamondCode();
+        myIntent.putExtra("details", details);
+        ArrayList creators = new ArrayList<String>();
+        for(int i = 0; i<list.get(position).getComicCreatorsList().size(); i++){
+            creators.add(list.get(position).getComicCreatorsList().get(i).getName());
+        }
+        myIntent.putExtra("creators", creators);
+        myIntent.putExtra("img", list.get(position).getImageUrl());
+        startActivity(myIntent);
     }
 }
