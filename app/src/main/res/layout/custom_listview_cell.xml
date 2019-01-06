@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/comicIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/comicIconDescription"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        />
+
+    <TextView
+        android:id="@+id/comicTitle"
+        android:text="@string/comicTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/comicIcon"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#CC0033"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/comicReleaseDate"
+        android:text="@string/comicReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comicTitle"
+        android:layout_toEndOf="@+id/comicIcon"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="#3399FF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/comicPageNumber"
+        android:text="@string/comicPageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comicReleaseDate"
+        android:layout_toEndOf="@id/comicIcon"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="#3399FF"
+        android:textSize="14sp" />
+
+</RelativeLayout>

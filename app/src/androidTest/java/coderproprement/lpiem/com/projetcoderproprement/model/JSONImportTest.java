@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -60,10 +62,12 @@ public class JSONImportTest {
     }
 
     @Test
-    public void createDate() {
+    public void createDate() throws ParseException{
         String date = "2017-10-25T00:00:00-0400";
-        Date expectedResult = new Date(2017,10,25);
-        assertTrue(jsonImport.createDate(date).equals(expectedResult));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-0400'");
+        Date date1 = format.parse(date);
+
+        assertTrue(jsonImport.createDate(date).equals(date1));
     }
 
     @Test
