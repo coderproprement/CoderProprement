@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -221,8 +223,15 @@ public class JSONImport implements JSONImportInterface{
 
     @Override
     public Date createDate(String formattedDate){
-        return new Date(Integer.parseInt(formattedDate.substring(0,4)),
-                Integer.parseInt(formattedDate.substring(5,7)),
-                Integer.parseInt(formattedDate.substring(8,10)));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-0400'");
+        Date date = null;
+        try {
+            date = format.parse(formattedDate);
+            System.out.println(date);
+            Log.d("MyDateFormatted",date.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
