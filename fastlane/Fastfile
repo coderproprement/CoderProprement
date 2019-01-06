@@ -1,3 +1,4 @@
+setup_travis
 # This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
 #
@@ -12,19 +13,28 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-
+fastlane_version "2.112.O"
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
+  ENV["FASTLANE_HIDE_CHANGELOG"] = "true"
+  ENV["FASTLANE_SKIP_UPDATE_CHECK"] = "true"
+  PROJECT_NAME = "comicsManager"
 
-  desc "Build the solution"
-  lane :build do
+  desc "Realizing unit tests"
+  lane :test do |options|
+    desc "Runs all the tests"
     gradle(
-      task: "assemble"
+      task:"clean",
+    )
+    gradle(
+      task: "testDebugUnitTest",
     )
   end
-end
+  desc "Build the solution and automatically rename Apk"
+  lane :build do |options|
+    gradle(
+	task:"build"
+    )
+    end
+  end
