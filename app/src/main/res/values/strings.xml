@@ -4,4 +4,5 @@
     <string name="comicTitle">Titre</string>
     <string name="comicReleaseDate">Date de parution</string>
     <string name="comicPageNumber">Nombre de pages</string>
+    <string name="jsonErrorMessage">Le fichier Json qui vous essayez de charger génère une erreur, veuillez vérifier votre fichier</string>
 </resources>
