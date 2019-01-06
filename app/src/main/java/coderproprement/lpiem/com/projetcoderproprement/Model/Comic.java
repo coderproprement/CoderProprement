@@ -1,7 +1,5 @@
 package coderproprement.lpiem.com.projetcoderproprement.Model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

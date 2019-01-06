@@ -1,6 +1,7 @@
 package coderproprement.lpiem.com.projetcoderproprement;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -66,5 +67,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(context, "You have clicked on Comic " + list.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(getBaseContext(),   DetailsActivity.class);
+        myIntent.putExtra("title", list.get(position).getTitle());
+        myIntent.putExtra("description", list.get(position).getDescription());
+        String details = list.get(position).getParutionDate().toString();
+        myIntent.putExtra("details", details);
+        startActivity(myIntent);
     }
 }
