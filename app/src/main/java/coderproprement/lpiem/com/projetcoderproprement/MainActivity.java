@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import coderproprement.lpiem.com.projetcoderproprement.Model.Comic;
 import coderproprement.lpiem.com.projetcoderproprement.Model.JSONImport;
@@ -35,14 +36,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //displayComicHashMap(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
         comicListView = (ListView) findViewById(R.id.comicListView);
 
-        comicList.putAll(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
+        try {
+            comicList.putAll(new JSONImport(comicList).importData(context,JSONImport.OKJSONADDRESSFILE));
+        } catch (Exception ex) {
+            JsonErrorDisplayer jsonErrorDisplayer = new JsonErrorDisplayer(context);
+            jsonErrorDisplayer.showErrorMessageWithSnackbar();
+            //jsonErrorDisplayer.showErrorMessageWithToast();
+        }
+
 
         //displayComicHashMap(comicList);
 
        list = new ArrayList<Comic>(comicList.values());
        //Log.d("ComicList",list.toString());
         
-       CustomBaseAdapter adapter = new CustomBaseAdapter(this, list);
+       CustomBaseAdapter adapter = new CustomBaseAdapter(context, list);
        comicListView.setAdapter(adapter);
        comicListView.setOnItemClickListener(this);
 
