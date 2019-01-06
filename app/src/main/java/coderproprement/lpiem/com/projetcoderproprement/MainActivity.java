@@ -72,13 +72,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         myIntent.putExtra("title", list.get(position).getTitle());
         myIntent.putExtra("description", list.get(position).getDescription());
         SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMMM  yyyy");
-        String details = format.format(list.get(position).getParutionDate());
+        String details ="Date de publication: "+ format.format(list.get(position).getParutionDate()) + "\n";
+        details = details + "prix: "+ String.valueOf(list.get(position).getPrice());
+        details = details + "  pages: " + String.valueOf(list.get(position).getPageCount());
+        details = details + "  diamond code: " + list.get(position).getDiamondCode();
         myIntent.putExtra("details", details);
         ArrayList creators = new ArrayList<String>();
         for(int i = 0; i<list.get(position).getComicCreatorsList().size(); i++){
             creators.add(list.get(position).getComicCreatorsList().get(i).getName());
         }
         myIntent.putExtra("creators", creators);
+        myIntent.putExtra("img", list.get(position).getImageUrl());
         startActivity(myIntent);
     }
 }
